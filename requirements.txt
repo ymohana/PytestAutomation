@@ -9,7 +9,7 @@ cryptography==3.4.8
 docker==5.0.3
 docker-compose==1.29.2
 docopt==0.6.2
-duplicity==0.8.21
+# duplicity==0.8.21  # Removed or replaced with a compatible version
 exceptiongroup==1.2.2
 fasteners==0.14.1
 filelock==3.6.0
