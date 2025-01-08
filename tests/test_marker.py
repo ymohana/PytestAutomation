@@ -26,5 +26,4 @@ def test_homepage_functionality(browser):
     browser.find_element(By.LINK_TEXT, "HOME").click()
     assert "Practice Test Automation | Learn Selenium WebDriver" == browser.title
 
-
     
