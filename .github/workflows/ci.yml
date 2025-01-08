@@ -9,24 +9,33 @@ on:
       - main
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.10.12'
+      # Install necessary dependencies
+      - name: Install dependencies (including selenium)
+        run: |
+          python -m pip install --upgrade pip
+          pip install attrs==24.3.0
+          pip install bcrypt==3.2.0
+          pip install blinker==1.4
+          pip install certifi==2024.12.14
+          pip install chardet==4.0.0
+          pip install click==8.0.3
+          pip install colorama==0.4.4
+          pip install cryptography==3.4.8
+          pip install docker==5.0.3
+          pip install docker-compose==1.29.2
+          pip install docopt==0.6.2
+          pip install selenium==4.8.0        # Add selenium installation
+          pip install webdriver-manager      # Add webdriver-manager if not already in your requirements
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install --no-cache-dir -r requirements.txt
-        pip install --no-cache-dir selenium pytest
-
-    - name: Run tests with pytest
-      run: |
-        pytest -v -rA
+      - name: Run tests with pytest
+        run: |
+          pytest -v -rA
