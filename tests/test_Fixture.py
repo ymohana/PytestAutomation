@@ -2,13 +2,18 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
+
 
 @pytest.fixture
 def browser():
-    # service = Service(ChromeDriverManager().install())
-    # driver = webdriver.Chrome(service=service)
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+
     service = Service(executable_path="/usr/bin/chromedriver")
-    driver = webdriver.Chrome(service=service)
+    driver = webdriver.Chrome(service=service, options=chrome_options)
     driver.maximize_window()
     yield driver
     driver.quit()
