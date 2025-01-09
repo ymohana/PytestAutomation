@@ -21,17 +21,23 @@ jobs:
         with:
           python-version: 3.10.12
 
-      - name: Install system dependencies for Chrome
+      - name: Install system dependencies for Chrome and ChromeDriver
         run: |
           sudo apt-get update
           sudo apt-get install -y wget curl unzip
           sudo apt-get install -y libxss1 libappindicator3-1 libindicator7
           sudo apt-get install -y google-chrome-stable
-
+          # Install dependencies for Chrome
+          sudo apt-get install -y libnss3 libgconf-2-4
+          
       - name: Install Python dependencies
         run: |
           python3 -m pip install --upgrade pip setuptools wheel
           python3 -m pip install pytest selenium webdriver-manager
+
+      - name: Verify Chrome installation
+        run: |
+          google-chrome-stable --version
 
       - name: Run tests with pytest
         run: |
