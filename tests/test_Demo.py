@@ -2,12 +2,11 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-def test_Demo():
-    service = Service(ChromeDriverManager().install())
+def test_Demo():  
+    service = Service(executable_path="/usr/bin/chromedriver")
     driver = webdriver.Chrome(service=service)
 
     driver.maximize_window()
@@ -19,8 +18,8 @@ def test_Demo():
     assert "pytest selenium" in driver.title
     driver.quit()
 
-def test_lambda():
-    service = Service(ChromeDriverManager().install())
+def test_lambda(): 
+    service = Service(executable_path="/usr/bin/chromedriver")
     driver = webdriver.Chrome(service=service)
 
     driver.maximize_window()

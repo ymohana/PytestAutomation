@@ -13,32 +13,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout the code
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # Step 2: Set up Python
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: 3.10.12
 
-      - name: Install system dependencies for Chrome and ChromeDriver
+      # Step 3: Install system dependencies
+      - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y wget curl unzip
-          sudo apt-get install -y libxss1 libappindicator3-1 libindicator7
           sudo apt-get install -y google-chrome-stable
-          # Install dependencies for Chrome
-          sudo apt-get install -y libnss3 libgconf-2-4
-          
+
+      # Step 4: Verify Chrome installation
+      - name: Verify Chrome installation
+        run: google-chrome-stable --version
+
+      # Step 5: Install Python dependencies
       - name: Install Python dependencies
         run: |
           python3 -m pip install --upgrade pip setuptools wheel
-          python3 -m pip install pytest selenium webdriver-manager
+          python3 -m pip install pytest selenium
 
-      - name: Verify Chrome installation
-        run: |
-          google-chrome-stable --version
-
+      # Step 6: Run Pytest
       - name: Run tests with pytest
-        run: |
-          pytest -v -rA
+        run: pytest -v -rA

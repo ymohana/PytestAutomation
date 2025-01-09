@@ -1,12 +1,13 @@
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 
 @pytest.fixture
 def browser():
-    service = Service(ChromeDriverManager().install())
+    # service = Service(ChromeDriverManager().install())
+    # driver = webdriver.Chrome(service=service)
+    service = Service(executable_path="/usr/bin/chromedriver")
     driver = webdriver.Chrome(service=service)
     driver.maximize_window()
     yield driver
