@@ -29,7 +29,7 @@ jobs:
       - name: Install dependencies
         run: |
           python3 -m pip install --upgrade pip setuptools wheel
-          python3 -m pip install PyYAML==6.0 docker-compose==1.29.2 selenium==4.8.0 webdriver-manager
+          python3 -m pip install PyYAML==6.0 docker-compose==2.0.0 selenium==4.8.0 webdriver-manager
           # Add any other dependencies if needed
 
       - name: Run tests with pytest
